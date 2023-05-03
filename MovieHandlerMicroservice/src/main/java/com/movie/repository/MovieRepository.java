@@ -12,4 +12,5 @@ import com.movie.entity.Movie;
 @Transactional
 public interface MovieRepository extends JpaRepository<Movie,Long>{
 public List<Movie> findByMovieName(String movieName);
+public List<Movie> findByMovieGenre(String movieGenre);
 }

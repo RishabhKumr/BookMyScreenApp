@@ -48,4 +48,29 @@ public boolean deleteMovie(Long movieId) {
     movieRepository.deleteById(movieId);
     return true;
 }
+
+@Override
+public List<Movie> getMovieByGenre(String movieName) {
+	return movieRepository.findByMovieGenre(movieName);
+}
+
+@Override
+public String updateMovie(Movie movie) {
+	String status = "Not Updated! Check Logs";
+	Movie movieObj = movieRepository.findById(movie.getMovieId()).orElseThrow(
+			() -> new com.movie.exceptions.MovieNotFoundException("Movie", "Id", movie.getMovieId()));
+	if(movieObj != null) {
+		movieObj.setMovieName(movie.getMovieName());
+		movieObj.setMovieCast(movie.getMovieCast());
+		movieObj.setMovieDuration(movie.getMovieDuration());
+		movieObj.setMovieGenre(movie.getMovieGenre());
+		movieObj.setMovieLanguage(movie.getMovieLanguage());
+		movieObj.setMovieLink(movie.getMovieLink());
+		movieObj.setMovieLogo(movie.getMovieLogo());
+		movieObj.setMovieRating(movie.getMovieRating());
+		movieRepository.save(movieObj);
+		status="Updated!";
+	}
+	return status;
+}
 }

@@ -15,5 +15,9 @@ public Movie getMovieById(Long movieId);
 
 public List<Movie> getMovieByName(String movieName);
 
-public boolean deleteMovie(Long MovieId);
+public List<Movie> getMovieByGenre(String movieName);
+
+public String updateMovie(Movie movie);
+
+public boolean deleteMovie(Long movieId);
 }
