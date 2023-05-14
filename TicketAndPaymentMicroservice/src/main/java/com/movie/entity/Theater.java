@@ -17,18 +17,28 @@ public class Theater {
 	
 	private String movie;
 
+	private String location;
+	
+	private String city;
+	
+	private String show;
+
 	public Theater() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Theater(Long theaterID, String theaterName, String theaterAddress, Set<String> seats, String movie) {
+	public Theater(Long theaterID, String theaterName, String theaterAddress, Set<String> seats, String movie,
+			String location, String city, String show) {
 		super();
 		this.theaterID = theaterID;
 		this.theaterName = theaterName;
 		this.theaterAddress = theaterAddress;
 		this.seats = seats;
 		this.movie = movie;
+		this.location = location;
+		this.city = city;
+		this.show = show;
 	}
 
 	public Long getTheaterID() {
@@ -69,6 +79,30 @@ public class Theater {
 
 	public void setMovie(String movie) {
 		this.movie = movie;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getShow() {
+		return show;
+	}
+
+	public void setShow(String show) {
+		this.show = show;
 	}
 	
 	

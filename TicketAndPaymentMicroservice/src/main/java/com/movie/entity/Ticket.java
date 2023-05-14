@@ -27,24 +27,83 @@ public class Ticket {
 	private String ticketStatus;
 	
 	private Set<String> ticketSeat;
+
+	private Long theaterId;
 	
-	@JsonBackReference
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="theaterId")
-	private Theater theater;
-	
-	@JsonBackReference
-	@OneToMany(fetch=FetchType.LAZY)
-	@JoinColumn(name="movieId")
-	private Movie movie;
+	private Long movieId;
 
 	public Ticket() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	public Ticket(Long ticketId, String ticketDate, String ticketTime, String ticketStatus, Set<String> ticketSeat,
+			Long theaterId, Long movieId) {
+		super();
+		this.ticketId = ticketId;
+		this.ticketDate = ticketDate;
+		this.ticketTime = ticketTime;
+		this.ticketStatus = ticketStatus;
+		this.ticketSeat = ticketSeat;
+		this.theaterId = theaterId;
+		this.movieId = movieId;
+	}
 
-	
+	public Long getTicketId() {
+		return ticketId;
+	}
+
+	public void setTicketId(Long ticketId) {
+		this.ticketId = ticketId;
+	}
+
+	public String getTicketDate() {
+		return ticketDate;
+	}
+
+	public void setTicketDate(String ticketDate) {
+		this.ticketDate = ticketDate;
+	}
+
+	public String getTicketTime() {
+		return ticketTime;
+	}
+
+	public void setTicketTime(String ticketTime) {
+		this.ticketTime = ticketTime;
+	}
+
+	public String getTicketStatus() {
+		return ticketStatus;
+	}
+
+	public void setTicketStatus(String ticketStatus) {
+		this.ticketStatus = ticketStatus;
+	}
+
+	public Set<String> getTicketSeat() {
+		return ticketSeat;
+	}
+
+	public void setTicketSeat(Set<String> ticketSeat) {
+		this.ticketSeat = ticketSeat;
+	}
+
+	public Long getTheaterId() {
+		return theaterId;
+	}
+
+	public void setTheaterId(Long theaterId) {
+		this.theaterId = theaterId;
+	}
+
+	public Long getMovieId() {
+		return movieId;
+	}
+
+	public void setMovieId(Long movieId) {
+		this.movieId = movieId;
+	}
 	
 	
 }
