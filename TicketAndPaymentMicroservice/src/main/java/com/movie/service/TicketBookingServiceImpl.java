@@ -36,20 +36,20 @@ public class TicketBookingServiceImpl implements ITicketBookingService{
 		Movie movie = this.restTemplate.getForObject(serviceUrl, Movie.class);
 		
 		Optional<Theater> theater = theaterRepository.findById(ticketBookingDto.getTheaterId());
-		Theater theaterObj = theater.get();
 		
 		Ticket ticket = new Ticket();
-		if(movie != null && theaterObj.getMovie().equals(movie.getMovieId()))
-		{
+		
 			Set<String> seats = new HashSet<>();
 			seats.add(ticketBookingDto.getTicketSeat());
 			ticket.setMovieId(movie.getMovieId());
-			ticket.setTheaterId(theaterObj.getTheaterID());
+			ticket.setTheaterId(theater.get().getTheaterID());
 			ticket.setTicketDate(ticketBookingDto.getTicketDate());
 			ticket.setTicketSeat(seats);
 			ticket.setTicketStatus("Booked");
 			ticket.setTicketTime(ticketBookingDto.getTicketTime());
-		}
+			ticket.setUserId(ticketBookingDto.getUserId());
+			ticketRepository.save(ticket);
+		
 		
 		return ticket;
 		

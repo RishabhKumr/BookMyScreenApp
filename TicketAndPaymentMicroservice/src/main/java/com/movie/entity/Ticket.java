@@ -31,6 +31,8 @@ public class Ticket {
 	private Long theaterId;
 	
 	private Long movieId;
+	
+	private Long userId;
 
 	public Ticket() {
 		super();
@@ -38,7 +40,7 @@ public class Ticket {
 	}
 
 	public Ticket(Long ticketId, String ticketDate, String ticketTime, String ticketStatus, Set<String> ticketSeat,
-			Long theaterId, Long movieId) {
+			Long theaterId, Long movieId, Long userId) {
 		super();
 		this.ticketId = ticketId;
 		this.ticketDate = ticketDate;
@@ -47,6 +49,7 @@ public class Ticket {
 		this.ticketSeat = ticketSeat;
 		this.theaterId = theaterId;
 		this.movieId = movieId;
+		this.userId = userId;
 	}
 
 	public Long getTicketId() {
@@ -104,7 +107,15 @@ public class Ticket {
 	public void setMovieId(Long movieId) {
 		this.movieId = movieId;
 	}
-	
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
 	
 }
 	
