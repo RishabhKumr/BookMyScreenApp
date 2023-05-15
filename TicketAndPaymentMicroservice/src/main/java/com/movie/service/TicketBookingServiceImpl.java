@@ -1,6 +1,7 @@
 package com.movie.service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -59,6 +60,12 @@ public class TicketBookingServiceImpl implements ITicketBookingService{
 	public String cancelTicket(Long ticketId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Ticket> getTicketsByUserId(Long userId) {
+		List<Ticket> ticketList = ticketRepository.findByUserId(userId);
+		return ticketList;
 	}
 
 }
