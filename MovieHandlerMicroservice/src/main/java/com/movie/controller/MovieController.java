@@ -39,14 +39,8 @@ public ResponseEntity<?> addMovie(@RequestBody Movie movie) throws MovieIdAlread
 }
 
 @GetMapping("/getAllMovies")
-public ResponseEntity<?> getAllMovies(){
-    List<Movie> movieList = movieService.getAllMovies();
-    if(movieList != null) {
-        CacheControl cacheControl = CacheControl.maxAge(30,TimeUnit.MINUTES);
-        return ResponseEntity.ok().cacheControl(cacheControl)
-                .body(ResponseHandler.generateResponse("Successfully fetched Movies", HttpStatus.OK, movieList));
-    }
-    return new ResponseEntity<String>("Movie List is Empty!",HttpStatus.NO_CONTENT);
+public List<Movie> getAllMovies(){
+    return movieService.getAllMovies();
 }
 
 @GetMapping("/getMovieByName/{movieName}")
