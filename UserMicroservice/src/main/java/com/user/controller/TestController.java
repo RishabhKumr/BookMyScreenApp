@@ -73,7 +73,7 @@ public class TestController {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity entity = new HttpEntity(movie,headers);
 		ResponseEntity<?> status = this.restTemplate.exchange(url, HttpMethod.POST,entity, Movie.class);
-		kafkaService.setTemp(status.toString());
+//		kafkaService.setTemp(status.toString());
 		return status;
 	}
 }
