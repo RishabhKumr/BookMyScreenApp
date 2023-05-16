@@ -1,7 +1,8 @@
 package com.movie.controller;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,7 @@ public class MovieController {
 
 @Autowired
 private MovieServiceImpl movieService;
+Logger logger = LoggerFactory.getLogger(MovieController.class);
 
 @PostMapping("/addMovie")
 public ResponseEntity<?> addMovie(@RequestBody Movie movie) throws MovieIdAlreadyExistsException{
@@ -35,11 +37,13 @@ public ResponseEntity<?> addMovie(@RequestBody Movie movie) throws MovieIdAlread
     if(movieService.addMovie(movie) != null) {
         return new ResponseEntity<Movie>(movie,HttpStatus.CREATED);
     }
+    logger.info("API CALL:   /addMovie");
     return new ResponseEntity<String>("Movie is not created in DB",HttpStatus.CONFLICT);
 }
 
 @GetMapping("/getAllMovies")
 public List<Movie> getAllMovies(){
+	logger.info("API CALL:   /getAllMovies");
     return movieService.getAllMovies();
 }
 
@@ -50,6 +54,7 @@ public ResponseEntity<?> getMovieByName(@PathVariable String movieName) throws M
     if(!movieList.isEmpty()) {
         return new ResponseEntity<List>( movieList, HttpStatus.OK);
     }
+    logger.info("API CALL:   /getMovieByName");
     return new ResponseEntity<String>("Movie Not Found!",HttpStatus.NO_CONTENT);
 }
 
