@@ -1,1 +1,44 @@
-<p>home works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movie Tickets, Plays, Screenings Near {{city}}- BookMyScreen</title>
+</head>
+<app-home-nav [city]="city"></app-home-nav>
+<body>
+<!–Mobile Login and Other Tabs–>
+<div class="mobileLogin">
+<ul>
+<li><a class="active" href="#home">Home</a></li>
+<li><a href="#news">Login</a></li>
+<li><a href="#contact">Register</a></li>
+<li><a href="#about">Advance Search</a></li>
+</ul>
+</div>
+<div class="mall-slide" style="width: 100%; height: 300px;">
+<div class="slid-content">
+<div class="mall-show-slide fade" *ngFor="let item of ImageData;">
+<img class="image-slider" src="{{item}}">
+</div>
+
+    </div>
+</div>
+
+<div class="recommendedmovie" >
+    <span>Recommended Movies & Shows</span>
+</div>
+<!--image Slider-->
+<ng-image-slider [images]="imageObject" #nav></ng-image-slider>
+<div class="recommendedmovie" >
+    <span>Avail Exclusive Offers & Coupon</span>
+</div>
+<div class="offers">
+    <a>
+        <img class="offerimage" src="/assets/offers.png" alt="offers" />
+    </a>
+</div>
+</body>
+<app-footer></app-footer>
+</html>
