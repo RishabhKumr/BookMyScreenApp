@@ -9,6 +9,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { LoginComponent } from './Components/login/login.component';
 import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
 import { FooterComponent } from './Components/footer/footer.component';
+import { SignupComponent } from './Components/signup/signup.component';
 
 @NgModule({
 declarations: [
@@ -17,6 +18,7 @@ HomeNavComponent,
 HomeComponent,
 LoginComponent,
 FooterComponent,
+SignupComponent,
 ],
 imports: [
 BrowserModule,
