@@ -10,6 +10,11 @@ import { LoginComponent } from './Components/login/login.component';
 import { NgImageSliderComponent, NgImageSliderModule } from 'ng-image-slider';
 import { FooterComponent } from './Components/footer/footer.component';
 import { SignupComponent } from './Components/signup/signup.component';
+import { AdminComponent } from './Components/admin/admin.component';
+import { AdvanceSearchComponent } from './Components/advance-search/advance-search.component';
+import { WildcardComponent } from './Components/wildcard/wildcard.component';
+import { UserDashboardComponent } from './Components/user/user-dashboard/user-dashboard.component';
+import { UserProfileComponent } from './Components/user/user-profile/user-profile.component';
 
 @NgModule({
 declarations: [
@@ -19,6 +24,11 @@ HomeComponent,
 LoginComponent,
 FooterComponent,
 SignupComponent,
+AdminComponent,
+AdvanceSearchComponent,
+WildcardComponent,
+UserDashboardComponent,
+UserProfileComponent
 ],
 imports: [
 BrowserModule,
