@@ -5,6 +5,8 @@ import { LoginComponent } from './Components/login/login.component';
 import { SignupComponent } from './Components/signup/signup.component';
 import { AdvanceSearchComponent } from './Components/advance-search/advance-search.component';
 import { WildcardComponent } from './Components/wildcard/wildcard.component';
+import { UserDashboardComponent } from './Components/user/user-dashboard/user-dashboard.component';
+import { AdminComponent } from './Components/admin/admin.component';
 
 const routes: Routes = [
   {
@@ -18,6 +20,12 @@ const routes: Routes = [
   },
   {
   path:"advancesearch",component:AdvanceSearchComponent
+  },
+  {
+    path:"userdashboard",component:UserDashboardComponent
+  },
+  {
+    path:"admindashboard",component:AdminComponent
   },
   {
   path:"**",component:WildcardComponent

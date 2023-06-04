@@ -3,6 +3,8 @@ import { LocationService } from 'src/app/Services/location.service';
 import { Observable } from 'rxjs';
 import { Location } from 'src/app/Entity/Location'
 import { NgImageSliderComponent } from 'ng-image-slider';
+import { Movie } from 'src/app/Entity/Movie';
+import { PreloginService } from 'src/app/Services/prelogin.service';
 @Component({
 selector: 'app-home',
 templateUrl: './home.component.html',
@@ -12,8 +14,11 @@ export class HomeComponent {
 location: Location | undefined;
 
 @Input() city: string = "";
-constructor(private locationService: LocationService) {
+constructor(private locationService: LocationService, private preLoginService: PreloginService) {
 }
+
+imageObject:Array<object>;
+movie:Movie[] = [];
 
 ngOnInit() {
 this.Repeat();
@@ -24,6 +29,13 @@ console.log(this.location.city);
 this.city = this.location.city;
 sessionStorage.setItem("location", this.city);
 });
+
+
+this.preLoginService.fetchMovies().subscribe((response) => {
+  this.imageObject = response;
+  console.log(this.imageObject);
+});
+
 }
 //image Slider by time
 startIndex = 0;
@@ -58,54 +70,55 @@ if (this.startIndex > slides.length - 1) {
 //ng-image-slider
 @ViewChild('nav') slider: NgImageSliderComponent;
 
-imageObject: Array<object> = [{
-image: '/assets/img1.jpg',
-thumbImage: '/assets/img1.jpg',
-alt: 'alt of image',
-title: 'title of image'
-},
-{
-image: '/assets/img_nature_wide.jpg',
-thumbImage: '/assets/img_nature_wide.jpg',
-alt: 'alt of image',
-title: 'title of image'
-},
-{
-image: '/assets/img_nature_wide.jpg',
-thumbImage: '/assets/img_nature_wide.jpg',
-alt: 'alt of image',
-title: 'title of image'
-},
-{
-image: '/assets/img_nature_wide.jpg',
-thumbImage: '/assets/img_nature_wide.jpg',
-alt: 'alt of image',
-title: 'title of image'
-},
-{
-image: '/assets/img_nature_wide.jpg',
-thumbImage: '/assets/img_nature_wide.jpg',
-alt: 'alt of image',
-title: 'title of image'
-},
-{
-image: '/assets/img_nature_wide.jpg',
-thumbImage: '/assets/img_nature_wide.jpg',
-alt: 'alt of image',
-title: 'title of image'
-},
-{
-image: '/assets/img_nature_wide.jpg',
-thumbImage: '/assets/img_nature_wide.jpg',
-alt: 'alt of image',
-title: 'title of image'
-},
-{
-image: '/assets/img_nature_wide.jpg',
-thumbImage: '/assets/img_nature_wide.jpg',
-alt: 'alt of image',
-title: 'title of image'
-}];
+
+// imageObject: Array<object> = [{
+// image: '/assets/img1.jpg',
+// thumbImage: '/assets/img1.jpg',
+// alt: 'alt of image',
+// title: 'title of image'
+// },
+// {
+// image: '/assets/img_nature_wide.jpg',
+// thumbImage: '/assets/img_nature_wide.jpg',
+// alt: 'alt of image',
+// title: 'title of image'
+// },
+// {
+// image: '/assets/img_nature_wide.jpg',
+// thumbImage: '/assets/img_nature_wide.jpg',
+// alt: 'alt of image',
+// title: 'title of image'
+// },
+// {
+// image: '/assets/img_nature_wide.jpg',
+// thumbImage: '/assets/img_nature_wide.jpg',
+// alt: 'alt of image',
+// title: 'title of image'
+// },
+// {
+// image: '/assets/img_nature_wide.jpg',
+// thumbImage: '/assets/img_nature_wide.jpg',
+// alt: 'alt of image',
+// title: 'title of image'
+// },
+// {
+// image: '/assets/img_nature_wide.jpg',
+// thumbImage: '/assets/img_nature_wide.jpg',
+// alt: 'alt of image',
+// title: 'title of image'
+// },
+// {
+// image: '/assets/img_nature_wide.jpg',
+// thumbImage: '/assets/img_nature_wide.jpg',
+// alt: 'alt of image',
+// title: 'title of image'
+// },
+// {
+// image: '/assets/img_nature_wide.jpg',
+// thumbImage: '/assets/img_nature_wide.jpg',
+// alt: 'alt of image',
+// title: 'title of image'
+// }];
 prevImageClick() {
 this.slider.prev();
 }
