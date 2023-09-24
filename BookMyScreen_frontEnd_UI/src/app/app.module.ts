@@ -15,7 +15,10 @@ import { AdvanceSearchComponent } from './Components/advance-search/advance-sear
 import { WildcardComponent } from './Components/wildcard/wildcard.component';
 import { UserDashboardComponent } from './Components/user/user-dashboard/user-dashboard.component';
 import { UserProfileComponent } from './Components/user/user-profile/user-profile.component';
-
+import { UserNavComponent } from './Components/user/user-nav/user-nav.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
 declarations: [
 AppComponent,
@@ -28,16 +31,20 @@ AdminComponent,
 AdvanceSearchComponent,
 WildcardComponent,
 UserDashboardComponent,
-UserProfileComponent
+UserProfileComponent,
+UserNavComponent
 ],
 imports: [
 BrowserModule,
 AppRoutingModule,
 HttpClientModule,
 FormsModule,
-NgImageSliderModule
+NgImageSliderModule,
+MDBBootstrapModule.forRoot(),
+BrowserAnimationsModule,
 ],
 providers: [],
-bootstrap: [AppComponent]
+bootstrap: [AppComponent],
+schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }

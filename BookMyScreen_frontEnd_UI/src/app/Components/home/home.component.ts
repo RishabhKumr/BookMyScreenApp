@@ -5,6 +5,8 @@ import { Location } from 'src/app/Entity/Location'
 import { NgImageSliderComponent } from 'ng-image-slider';
 import { Movie } from 'src/app/Entity/Movie';
 import { PreloginService } from 'src/app/Services/prelogin.service';
+import { Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/Services/token-storage.service';
 @Component({
 selector: 'app-home',
 templateUrl: './home.component.html',
@@ -13,14 +15,43 @@ styleUrls: ['./home.component.css']
 export class HomeComponent {
 location: Location | undefined;
 
+private roles: string;
+isLoggedIn = false;
+showAdminBoard = false;
+showModeratorBoard = false;
+username?: string;
+showGuest = false;
+
 @Input() city: string = "";
-constructor(private locationService: LocationService, private preLoginService: PreloginService) {
+constructor(private locationService: LocationService, private preLoginService: PreloginService,private tokenStorageService: TokenStorageService,private router:Router) {
 }
 
-imageObject:Array<object>;
+// imageObject:Array<object>;
 movie:Movie[] = [];
 
 ngOnInit() {
+
+  this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+  if (this.isLoggedIn) {
+    const user = this.tokenStorageService.getUser();
+    this.roles = user.roles;
+
+    this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+    this.showModeratorBoard = this.roles.includes('ROLE_USER');
+
+    if(this.showAdminBoard == true){
+      this.router.navigate(['admindashboard']);
+    }
+    if(this.showModeratorBoard== true){
+      this.router.navigate(['userdashboard']);
+    }
+    if(this.showModeratorBoard== false){
+      this.router.navigate(['login']);
+    }
+    this.username = user.username;
+  }
+
 this.Repeat();
 const promise = this.locationService.getLocation();
 promise.subscribe((response) => {
@@ -31,10 +62,10 @@ sessionStorage.setItem("location", this.city);
 });
 
 
-this.preLoginService.fetchMovies().subscribe((response) => {
-  this.imageObject = response;
-  console.log(this.imageObject);
-});
+// this.preLoginService.fetchMovies().subscribe((response) => {
+//   this.imageObject = response;
+//   console.log(this.imageObject);
+// });
 
 }
 //image Slider by time
@@ -71,54 +102,54 @@ if (this.startIndex > slides.length - 1) {
 @ViewChild('nav') slider: NgImageSliderComponent;
 
 
-// imageObject: Array<object> = [{
-// image: '/assets/img1.jpg',
-// thumbImage: '/assets/img1.jpg',
-// alt: 'alt of image',
-// title: 'title of image'
-// },
-// {
-// image: '/assets/img_nature_wide.jpg',
-// thumbImage: '/assets/img_nature_wide.jpg',
-// alt: 'alt of image',
-// title: 'title of image'
-// },
-// {
-// image: '/assets/img_nature_wide.jpg',
-// thumbImage: '/assets/img_nature_wide.jpg',
-// alt: 'alt of image',
-// title: 'title of image'
-// },
-// {
-// image: '/assets/img_nature_wide.jpg',
-// thumbImage: '/assets/img_nature_wide.jpg',
-// alt: 'alt of image',
-// title: 'title of image'
-// },
-// {
-// image: '/assets/img_nature_wide.jpg',
-// thumbImage: '/assets/img_nature_wide.jpg',
-// alt: 'alt of image',
-// title: 'title of image'
-// },
-// {
-// image: '/assets/img_nature_wide.jpg',
-// thumbImage: '/assets/img_nature_wide.jpg',
-// alt: 'alt of image',
-// title: 'title of image'
-// },
-// {
-// image: '/assets/img_nature_wide.jpg',
-// thumbImage: '/assets/img_nature_wide.jpg',
-// alt: 'alt of image',
-// title: 'title of image'
-// },
-// {
-// image: '/assets/img_nature_wide.jpg',
-// thumbImage: '/assets/img_nature_wide.jpg',
-// alt: 'alt of image',
-// title: 'title of image'
-// }];
+imageObject: Array<object> = [{
+image: '/assets/img1.jpg',
+thumbImage: '/assets/img1.jpg',
+alt: 'alt of image',
+title: 'title of image'
+},
+{
+image: '/assets/img_nature_wide.jpg',
+thumbImage: '/assets/img_nature_wide.jpg',
+alt: 'alt of image',
+title: 'title of image'
+},
+{
+image: '/assets/img_nature_wide.jpg',
+thumbImage: '/assets/img_nature_wide.jpg',
+alt: 'alt of image',
+title: 'title of image'
+},
+{
+image: '/assets/img_nature_wide.jpg',
+thumbImage: '/assets/img_nature_wide.jpg',
+alt: 'alt of image',
+title: 'title of image'
+},
+{
+image: '/assets/img_nature_wide.jpg',
+thumbImage: '/assets/img_nature_wide.jpg',
+alt: 'alt of image',
+title: 'title of image'
+},
+{
+image: '/assets/img_nature_wide.jpg',
+thumbImage: '/assets/img_nature_wide.jpg',
+alt: 'alt of image',
+title: 'title of image'
+},
+{
+image: '/assets/img_nature_wide.jpg',
+thumbImage: '/assets/img_nature_wide.jpg',
+alt: 'alt of image',
+title: 'title of image'
+},
+{
+image: '/assets/img_nature_wide.jpg',
+thumbImage: '/assets/img_nature_wide.jpg',
+alt: 'alt of image',
+title: 'title of image'
+}];
 prevImageClick() {
 this.slider.prev();
 }

@@ -7,6 +7,7 @@ import { AdvanceSearchComponent } from './Components/advance-search/advance-sear
 import { WildcardComponent } from './Components/wildcard/wildcard.component';
 import { UserDashboardComponent } from './Components/user/user-dashboard/user-dashboard.component';
 import { AdminComponent } from './Components/admin/admin.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
